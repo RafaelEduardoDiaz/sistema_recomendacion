@@ -1,0 +1,13 @@
+name: recommender_systems
+title: recommender_systems
+username:
+account: rafael-eduardo-diaz
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 6958431
+bundleId: 6326398
+url: https://rafael-eduardo-diaz.shinyapps.io/recommender_systems/
+when: 1663820668.98303
+lastSyncTime: 1663820668.98305
+asMultiple: FALSE
+asStatic: FALSE
