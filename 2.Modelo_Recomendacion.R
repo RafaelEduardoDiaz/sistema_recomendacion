@@ -18,7 +18,7 @@ df_juegos <- df_juegos[,.(appid, name, header_image, developers, release_date, g
 df_users <- readRDS(file = "data/df_users.RDS")
 df_users <- df_users[order(appid, author.steamid),.(appid, author.steamid, voted_up)]
 df_users <- df_users[appid %in% df_juegos$appid]
-
+uniqueN(df_users$author.steamid)
 
 ## Uno ambos data
 df_total <- left_join(x = df_users, y = df_juegos, by = "appid")
@@ -37,6 +37,7 @@ uniqueN(df_total$appid)
 steamRatings <- as(df_total[,.(author.steamid, appid, voted_up = as.numeric(voted_up))],"realRatingMatrix") # 919081 (usuarios) x 3691 (peliculas) x 1933138 (ratings)
 steamRatings_binarize <- binarize(steamRatings, minRating=1) # 919081 (usuarios) x 3691 (peliculas) x 1797727 (ratings)
 steamRatings_binarize <- steamRatings_binarize[rowCounts(steamRatings_binarize) > 10] # 14058 (usuarios) x 3691 (peliculas) x 259499 (ratings)
+
 
 set.seed(456) # Creador del esquema de evaluacion con un train del 0.8, validacion cruzada de 10 capas
 esquema <- evaluationScheme(steamRatings_binarize, method='cross-validation', k=5, given=10, train = 0.8)
@@ -62,6 +63,7 @@ lubridate::seconds_to_period(27194) #"7H 33M 14S"
 df_result <- avg(resultados); #saveRDS(object = resultados, "resultados.RDS")
 as.data.frame(df_result$RANDOM)
 
+resultados <- readRDS("resultados.RDS")
 
 recommenderlab::summary(resultados)
 

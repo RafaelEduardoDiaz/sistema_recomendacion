@@ -20,7 +20,7 @@ df_juegos <- read.fst(path = "df_juegos.fst", as.data.table = TRUE)
 df_user_info <- as.data.table(readRDS(file = "df_user_info.RDS"))
 
 # 3. Informacion de los juegos y de las reseñas del usuarios
-df_total <- as.data.table(readRDS(file = "recommender_systems/df_total.RDS"))
+df_total <- as.data.table(readRDS(file = "df_total.RDS"))
 
 # 4. Informacion predicciones recomendacion usuario
 df_predict_user <- as.data.table(readRDS(file = "df_predict_user.RDS"))
