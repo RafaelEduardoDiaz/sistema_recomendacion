@@ -143,6 +143,7 @@ df_predict_user <- left_join(x = data.frame(appid = unlist(prediccion_total), au
                             by = "appid")
 
 ejemplo_usuario <- filter(df_predict_user, author.steamid == "76561197960291325")
+df_total[author.steamid == "76561197960291325"]
 
 tabla2 <- ejemplo_usuario %>% 
   mutate(image = paste0('<img src="', header_image, '" width="100" height="80"></img>')) %>% 
@@ -163,3 +164,10 @@ df_user_info <- as.data.table(readRDS(file = "recommender_systems/df_user_info.R
 df_total <- as.data.table(readRDS(file = "recommender_systems/df_total.RDS"))
 df_total <- df_total[author.steamid %in% df_user_info$steamid]
 saveRDS(object = df_total,file = "recommender_systems/df_total.RDS")
+
+
+users <- df_total[author.steamid %in% df_predict_user[appid == 1091500]$author.steamid][appid == 271590]
+
+
+df_total[author.steamid == '76561198069541163']
+df_predict_user[author.steamid == '76561198069541163']
